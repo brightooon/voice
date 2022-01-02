@@ -22,9 +22,7 @@ import shutil
 from twilio.rest import Client
 from bs4 import BeautifulSoup
 from clint.textui import progress
-#import win32com.client as wincl
 from urllib.request import urlopen
-
 
 engine = pyttsx3.init('sap15')
 voices = engine.getProperty('voices')
@@ -188,6 +186,57 @@ if __name__ == '__main__':
         elif "log off" in query or "sign out" in query:
             speak("will be sign out in ten seconds and please exit all the applications")
             subprocess.call(["shutdown", "/l"])
-
-
-        
+        elif "weather" in query:
+            weatherapi = "dc0b2b4f03569b8efbdcd80f1eeaafe4"
+            speak("What's the city name")
+            city_name = takeCommand()
+            url = "https://api.openweathermap.org/data/2.5/weather?q=" + city_name + "&appid=" + weatherapi
+            res = requests.get(url)
+            response = res.json()
+            if response["cod"] != "404":
+                wea = response["weather"]
+                description = wea[0]["description"]
+                main = response["main"]
+                temp = main["temp"]
+                pressure = main["pressure"]
+                humidity = main["humidity"]
+                speak(f"{city_name} is {description} today")
+                print(f"{city_name} is {description} today")
+                speak(f"temperaturue is {temp} in kelvin unit")
+                print(f"temperaturue is {temp} in kelvin unit")
+                speak(f"humidity is {humidity} percent")
+                print(f"humidity is {humidity} percent")
+            else:
+                message = response["message"]
+                speak(message)
+                print(message)
+        elif "send message" in query:
+            # we use twilo for sending message
+            acsid = "ACe55f64ab4251e4918203c3ac19221845"
+            authtoken = "338d17745dbcadd0fce4217d066bc025"
+            client = Client(acsid, authtoken)
+            speak("what you want to send")
+            try:
+                message = client.messages \
+                    .create(body = takeCommand(), me = "+19252851256", to = "+19252851256")
+                print(message.sid)
+                speak("message delivered")
+            except:
+                speak("failed to send message")
+        elif "take note" in query or "take a note" in query or "write note" in query or "write a note" in query:
+            speak("What shouid i write")
+            note = takeCommand()
+            file = open("voiceassistance.txt", "w")
+            speak("Do you want me include date and time")
+            boole  = takeCommand()
+            if "yes" in boole or "sure" in boole or "of course" in boole or "yea" in boole:
+                stringtime = datetime.datetime.now().strftime("% H:% M:% S")
+                file.write(stringtime)
+                file.write(":- \n")
+            file.write(note)
+        elif "show" in query and "note" in query:
+            speak("showing note")
+            file = open("voiceassistance.txt", "r")
+            print(file.read())
+            speak(file.read())
+            
