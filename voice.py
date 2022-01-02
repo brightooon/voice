@@ -187,7 +187,7 @@ if __name__ == '__main__':
             speak("will be sign out in ten seconds and please exit all the applications")
             subprocess.call(["shutdown", "/l"])
         elif "weather" in query:
-            weatherapi = "dc0b2b4f03569b8efbdcd80f1eeaafe4"
+            weatherapi = "ur weather api in openweathermap"
             speak("What's the city name")
             city_name = takeCommand()
             url = "https://api.openweathermap.org/data/2.5/weather?q=" + city_name + "&appid=" + weatherapi
@@ -213,12 +213,12 @@ if __name__ == '__main__':
         elif "send message" in query:
             # we use twilo for sending message
             acsid = "ACe55f64ab4251e4918203c3ac19221845"
-            authtoken = "338d17745dbcadd0fce4217d066bc025"
+            authtoken = " ur auth token"
             client = Client(acsid, authtoken)
             speak("what you want to send")
             try:
                 message = client.messages \
-                    .create(body = takeCommand(), me = "+19252851256", to = "+19252851256")
+                    .create(body = takeCommand(), me = "+19252851277", to = "+19252851277")
                 print(message.sid)
                 speak("message delivered")
             except:
@@ -239,4 +239,3 @@ if __name__ == '__main__':
             file = open("voiceassistance.txt", "r")
             print(file.read())
             speak(file.read())
-            
