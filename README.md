@@ -17,6 +17,17 @@ You can do vaious requests within this personal assistant:
 > Where's UCLA
 7. Abstract Information from Wikipedia
 > Check UCLA on Wikipedia
+8. Searching from Web
+> Search UCLA basketball
+9. Performing System Call
+>  do lock screen/ do sign out/ restart
+10. Mailing
+> I want to send a mail to Jamie, [ content ]
+11. Taking note by saying it
+> I want to take a note, [ content ]
+
+You will discover more features through using this personal voice assistant :trollface:
+
 
 APIs are used, such as wolframalpha, openweathermap, twilio,...
 
@@ -41,4 +52,7 @@ pip install requests
 ```
 ```
 pip install pyjokes
+```
+```
+pip install pyobjc-framework-Quartz
 ```

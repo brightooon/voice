@@ -21,8 +21,8 @@ import requests
 import shutil
 from twilio.rest import Client
 from bs4 import BeautifulSoup
-from clint.textui import progress
 from urllib.request import urlopen
+import Quartz
 
 engine = pyttsx3.init('sap15')
 voices = engine.getProperty('voices')
@@ -186,6 +186,10 @@ if __name__ == '__main__':
         elif "log off" in query or "sign out" in query:
             speak("will be sign out in ten seconds and please exit all the applications")
             subprocess.call(["shutdown", "/l"])
+        elif "lock screen" in query or "lock off" in query or "lock down" in query:
+            speak("lock now")
+            d = Quartz.CGSessionCopyCurrentDictionary()
+            print('CGSSessionScreenIsLocked' in d.keys())
         elif "weather" in query:
             weatherapi = "ur weather api in openweathermap"
             speak("What's the city name")
