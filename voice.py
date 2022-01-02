@@ -101,7 +101,7 @@ if __name__ == '__main__':
             speak("google opened")
             webbrowser.open("https://www.google.com/")
             time.sleep(3)
-        elif "wikipedia" in query:
+        elif "wikipedia" in query or "wiki" in query:
             speak("searching wikipedia...")
             query = query.replace("wikipedia", "")
             result = wikipedia.summary(query, sentences=2)
@@ -113,7 +113,7 @@ if __name__ == '__main__':
             time.sleep(3)
         elif "time now" in query:
             stringtime = datetime.datetime.now().strftime("% H:% M:% S")
-            speak("time is {stringtime} now")
+            speak(f"time is {stringtime} now")
         elif  "spotify" in query:
             speak("spotify opened")
             os.system("open -a Spotify")

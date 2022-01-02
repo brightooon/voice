@@ -7,15 +7,16 @@ You can do vaious requests within this personal assistant:
 > start Telegram or open Spotify
 2. Open Webbrowser
 > start Youtube or open Google
-3. Open calculator 
+3. Open Calculator 
 > start calculator, try one plus one
 4. Check time
 > What's the time now
-5. Check weather
+5. Check Weather
 > What's the weather today, in Los Angeles
-6. Check location
+6. Check Location
 > Where's UCLA
-
+7. Abstract Information from Wikipedia
+> Check UCLA on Wikipedia
 
 APIs are used, such as wolframalpha, openweathermap, twilio,...
 
